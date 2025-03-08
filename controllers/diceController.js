@@ -8,9 +8,9 @@ exports.rollDice = async (req, res) => {
             player = await Player.create({});
         }
 
-        const { betAmount } = req.body;
-        if (betAmount > player.balance) {
-            return res.status(400).json({ message: "❌ Insufficient balance" });
+        let betAmount = parseFloat(inputValue);  // Ensure input is a valid number
+        if (isNaN(betAmount) || betAmount <= 0) {
+            console.error("Invalid bet amount:", betAmount);
         }
 
         // Roll a number between 1 and 6
