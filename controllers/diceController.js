@@ -8,10 +8,16 @@ exports.rollDice = async (req, res) => {
             player = await Player.create({});
         }
 
-        let betAmount = parseFloat(inputValue);  // Ensure input is a valid number
-        if (isNaN(betAmount) || betAmount <= 0) {
-            console.error("Invalid bet amount:", betAmount);
+        exports.rollDice = (req, res) => {
+         const { betAmount } = req.body;  // ✅ Extract from request body
+
+        if (!betAmount || isNaN(betAmount) || betAmount <= 0) {
+            return res.status(400).json({ message: "Invalid bet amount" });
         }
+    
+        console.log("Bet Amount Received:", betAmount);
+    };
+
 
         // Roll a number between 1 and 6
         const roll = Math.floor(Math.random() * 6) + 1;
