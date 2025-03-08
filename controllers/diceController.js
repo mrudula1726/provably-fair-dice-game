@@ -8,7 +8,6 @@ exports.rollDice = async (req, res) => {
             player = await Player.create({});
         }
 
-        exports.rollDice = (req, res) => {
          const { betAmount } = req.body;  // ✅ Extract from request body
 
         if (!betAmount || isNaN(betAmount) || betAmount <= 0) {
@@ -16,7 +15,6 @@ exports.rollDice = async (req, res) => {
         }
     
         console.log("Bet Amount Received:", betAmount);
-    };
 
 
         // Roll a number between 1 and 6
